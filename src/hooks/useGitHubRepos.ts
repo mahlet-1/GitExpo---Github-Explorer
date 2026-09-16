@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GitHubRepo } from '../types/github';
+import type { GitHubRepo } from '../types/github';
 
 export function useGitHubRepos() {
   const [repo, setRepo] = useState<GitHubRepo[]>([]);

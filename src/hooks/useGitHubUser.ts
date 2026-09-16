@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GitHubUser, RateLimit } from '../types/github';
+import type { GitHubUser, RateLimit } from '../types/github';
 
 export function useGitHubUser() {
   const [user, setUser] = useState<GitHubUser | null>(null);
