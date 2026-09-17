@@ -26,6 +26,7 @@ export interface GitHubRepo {
   forks_count: number;
   updated_at: string;
   fork: boolean;
+  private: boolean;
 }
 
 export type RepoSort = 'stars' | 'forks' | 'updated' | 'name';
