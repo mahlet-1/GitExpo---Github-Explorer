@@ -16,7 +16,8 @@ export function useGitHubUser() {
       const response = await fetch(`https://api.github.com/users/${username}`);
       const limit = Number(response.headers.get('X-RateLimit-Limit') || 60);
       const remaining = Number(response.headers.get('X-RateLimit-Remaining') || 59);
-      const reset = Number(response.headers.get('X-RateLimit-Reset') || Date.now());
+      const resetHeader = response.headers.get('X-RateLimit-Reset');
+      const reset = resetHeader ? Number(resetHeader) * 1000 : Date.now();
       setRateLimit({ limit, remaining, reset });
 
       if (!response.ok) {
