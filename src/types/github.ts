@@ -54,3 +54,10 @@ export interface LanguageFilterProps {
   selectedLanguage: string;
   onSelectLanguage: (language: string) => void;
 }
+
+export interface NavbarProps {
+  onSearch: (username: string) => void;
+  history: string[];
+  onClearHistory: () => void;
+  showSearch?: boolean; 
+}

@@ -43,7 +43,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             value={Search}
             onChange={(e) => setSearch(e.target.value)}
             onFocus={() => setIsFocused(true)}
-            className="w-full bg-github-surface border-2 border-github-border rounded-xl pl-12 pr-4 py-3.5 text-sm font-bold text-github-text placeholder:text-github-muted focus:outline-none focus:border-github-accent transition-all shadow-lg"
+            className="w-full bg-github-bg border-2 border-github-border rounded-xl pl-12 pr-4 py-3.5 text-sm font-bold text-github-text placeholder:text-github-muted focus:outline-none focus:border-github-accent transition-all shadow-lg"
           />
         </div>
         <button

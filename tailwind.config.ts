@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         github: {
-          bg: "#0d1117",        
+          bg: "#000000",        
           surface: "#161b22",    
           border: "#30363d",      
           accent: "#30b830",      
