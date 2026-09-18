@@ -36,3 +36,15 @@ export interface RateLimit {
   remaining: number;
   reset: number;
 }
+
+export interface SearchBarProps {
+  onSearch: (username: string) => void;
+  history: string[];
+  onClearHistory: () => void;
+}
+
+export interface SearchHistoryProps {
+  history: string[];
+  onSelectSearch: (username: string) => void;
+  onClearHistory: () => void;
+}
