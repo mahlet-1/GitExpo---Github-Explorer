@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { RepoCard } from './RepoCard';
+import { LanguageFilter } from './LanguageFilter';
 import type { GitHubRepo } from '../types/github';
 
 interface RepoListProps {
@@ -10,13 +11,27 @@ interface RepoListProps {
 export const RepoList: React.FC<RepoListProps> = ({ repos }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'updated' | 'stars' | 'forks' | 'name'>('updated');
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+
+  const availableLanguages = useMemo(() => {
+    return Array.from(
+      new Set(repos.map((repo) => repo.language).filter(Boolean))
+    ) as string[];
+  }, [repos]);
 
   const formattedRepo = useMemo(() => {
     return repos
-      .filter((repo) => 
+      .filter((repo) => {
+        const matchesSearch =
         repo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (repo.description && repo.description.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
+
+      const matchesLanguage =
+          !selectedLanguage ||
+          repo.language?.toLowerCase() === selectedLanguage.toLowerCase();
+
+        return matchesSearch && matchesLanguage;
+      })
       .sort((a, b) => {
         if (sortBy === 'stars') return b.stargazers_count - a.stargazers_count;
         if (sortBy === 'forks') return b.forks_count - a.forks_count;
@@ -24,7 +39,7 @@ export const RepoList: React.FC<RepoListProps> = ({ repos }) => {
         return +new Date(b.updated_at) - +new Date(a.updated_at);
 
       });
-  }, [repos, searchQuery, sortBy]);
+  }, [repos, searchQuery, sortBy, selectedLanguage]);
 
   return (
     <div className="space-y-6">
@@ -53,6 +68,14 @@ export const RepoList: React.FC<RepoListProps> = ({ repos }) => {
           </select>
         </div>
       </div>
+
+      {availableLanguages.length > 0 && (
+        <LanguageFilter
+          languages={availableLanguages}
+          selectedLanguage={selectedLanguage}
+          onSelectLanguage={setSelectedLanguage}
+        />
+      )}
 
       {formattedRepo.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

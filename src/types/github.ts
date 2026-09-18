@@ -48,3 +48,9 @@ export interface SearchHistoryProps {
   onSelectSearch: (username: string) => void;
   onClearHistory: () => void;
 }
+
+export interface LanguageFilterProps {
+  languages: string[];
+  selectedLanguage: string;
+  onSelectLanguage: (language: string) => void;
+}
