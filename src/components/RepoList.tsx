@@ -6,6 +6,8 @@ import type { GitHubRepo } from '../types/github';
 
 interface RepoListProps {
   repos: GitHubRepo[];
+  loading?: boolean;   
+  error?: string | null
 }
 
 export const RepoList: React.FC<RepoListProps> = ({ repos }) => {

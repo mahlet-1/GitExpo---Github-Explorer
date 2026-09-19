@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import type { GitHubUser, RateLimit } from '../types/github';
 
 export function useGitHubUser() {
+  const { username } = useParams<{ username: string }>(); 
   const [user, setUser] = useState<GitHubUser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,5 +43,11 @@ export function useGitHubUser() {
     }
   };
 
+  useEffect(() => {
+    if (username) {
+      fetchUser(username);
+    }
+  }, [username]);
+
   return { user, loading, error, rateLimit, fetchUser };
-}
+};

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import type { GitHubRepo } from '../types/github';
 
 export function useGitHubRepos() {
+  const { username } = useParams<{ username: string }>();
   const [repo, setRepo] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null >(null);
@@ -35,5 +37,11 @@ export function useGitHubRepos() {
     }
   };
 
+  useEffect(() => {
+    if (username) {
+      fetchRepo(username);
+    }
+  }, [username]);
+
   return { repo, loading, error, fetchRepo };
-}
+};

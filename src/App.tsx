@@ -4,6 +4,7 @@ import { Navbar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { SearchPage } from './pages/SearchPage';
+import { UserProfile } from './pages/UserProfile'
 
 
 const AppShell: React.FC = () => {
@@ -14,6 +15,7 @@ const AppShell: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/user/:username" element={<UserProfile />} />
         </Routes>
       </main>
       <Footer />
