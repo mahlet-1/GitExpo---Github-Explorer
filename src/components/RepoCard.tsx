@@ -1,9 +1,10 @@
 import { FaStar, FaCodeBranch, FaBook } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import type { GitHubRepo } from '../types/github';
 
-interface RepoCardProps { repo: GitHubRepo; }
+interface RepoCardProps { repo: GitHubRepo; username: string; }
 
-export const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
+export const RepoCard: React.FC<RepoCardProps> = ({ repo, username }) => {
   const Formatted = new Date(repo.updated_at).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -11,7 +12,10 @@ export const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
   });
 
   return (
-    <div className="p-6 rounded-2xl border-2 border-github-border bg-github-surface hover:border-github-accent transition-all duration-300 flex flex-col justify-between shadow-2xl cursor-pointer group hover:scale-[1.02]">
+    <Link
+      to={`/user/${username}/repo/${repo.name}`}
+      className="p-6 rounded-2xl border-2 border-github-border bg-github-surface hover:border-github-accent transition-all duration-300 flex flex-col justify-between shadow-2xl cursor-pointer group hover:scale-[1.02] block"
+    >
       <div>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2.5 truncate pr-2">
@@ -58,6 +62,6 @@ export const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
 
         <span className="text-github-muted font-semibold">Updated {Formatted}</span>
       </div>
-    </div>
+    </Link>
   );
 };

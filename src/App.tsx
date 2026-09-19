@@ -4,7 +4,8 @@ import { Navbar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { SearchPage } from './pages/SearchPage';
-import { UserProfile } from './pages/UserProfile'
+import { UserProfile } from './pages/UserProfile';
+import { RepoDetail } from './pages/RepoDetail'
 
 
 const AppShell: React.FC = () => {
@@ -16,6 +17,7 @@ const AppShell: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/user/:username" element={<UserProfile />} />
+          <Route path="/user/:username/repo/:repoName" element={<RepoDetail />} />
         </Routes>
       </main>
       <Footer />

@@ -6,11 +6,12 @@ import type { GitHubRepo } from '../types/github';
 
 interface RepoListProps {
   repos: GitHubRepo[];
+  username: string;
   loading?: boolean;   
   error?: string | null
 }
 
-export const RepoList: React.FC<RepoListProps> = ({ repos }) => {
+export const RepoList: React.FC<RepoListProps> = ({ repos, username }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'updated' | 'stars' | 'forks' | 'name'>('updated');
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -82,7 +83,7 @@ export const RepoList: React.FC<RepoListProps> = ({ repos }) => {
       {formattedRepo.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {formattedRepo.map((repo) => (
-            <RepoCard key={repo.id} repo={repo} />
+            <RepoCard key={repo.id} repo={repo} username={username} />
           ))}
         </div>
       ) : (
