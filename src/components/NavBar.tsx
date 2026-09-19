@@ -1,16 +1,11 @@
-import { FaGithub } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
-import { SearchBar } from '../components/SearchBar';
-import type { NavbarProps } from '../types/github';
+import { FaGithub, FaSearch } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export const Navbar: React.FC<NavbarProps> = ({
-  onSearch,
-  history,
-  onClearHistory,
-  showSearch = true,
-}) => {
-    const location = useLocation();
-    const isHome = location.pathname === '/';
+
+export const Navbar: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate () ;
+  const isHome = location.pathname === '/';
 
   return (
     <header className="sticky top-0 z-50 bg-github-bg border-b border-github-border shadow-md px-4 sm:px-6 lg:px-8 py-3">
@@ -27,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <Link
             to="/"
             className={`relative py-1 px-2 text-sm font-medium transition-colors cursor-default flex items-center gap-1.5 ${
-              isHome ? 'text-github-text font-semibold' : 'text-github-muted hover:text-github-text'
+              isHome ? 'text-github-text font-semibold' : 'text-github-muted font-semibold hover:text-github-text'
             }`}
           >
             Home
@@ -39,15 +34,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="flex items-center justify-end">
-        {showSearch && (
-          <div className="w-full max-w-[240px] sm:max-w-xs">
-            <SearchBar 
-              onSearch={onSearch} 
-              history={history} 
-              onClearHistory={onClearHistory} 
-            />
-          </div>
-        )}
+        <button
+            onClick={() => navigate('/search')}
+            aria-label="Search"
+            className="flex items-center justify-center w-10 h-10 rounded-xl bg-github-surface border-2 border-github-border text-github-text hover:text-github-accent hover:border-github-accent transition-all cursor-default shadow-sm"
+          >
+            <FaSearch className="text-sm" />
+          </button>
         </div>
       </div>
     </header>

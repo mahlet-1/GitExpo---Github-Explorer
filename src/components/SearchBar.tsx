@@ -6,7 +6,8 @@ import type { SearchBarProps } from '../types/github';
 export const SearchBar: React.FC<SearchBarProps> = ({ 
   onSearch, 
   history, 
-  onClearHistory 
+  onClearHistory,
+  autoFocus = false
 }) => {
   const [Search, setSearch] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -43,6 +44,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             value={Search}
             onChange={(e) => setSearch(e.target.value)}
             onFocus={() => setIsFocused(true)}
+            autoFocus={autoFocus}
             className="w-full bg-github-bg border-2 border-github-border rounded-xl pl-12 pr-4 py-3.5 text-sm font-bold text-github-text placeholder:text-github-muted focus:outline-none focus:border-github-accent transition-all shadow-lg"
           />
         </div>

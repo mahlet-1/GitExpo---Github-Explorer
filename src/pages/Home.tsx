@@ -1,12 +1,10 @@
-import { FaGithub, FaCode, FaLaptopCode, FaSearch } from 'react-icons/fa';
+import { FaGithub, FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 export const Home: React.FC = () => {
+  const navigate = useNavigate(); 
   const handleStartSearching = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
-    if (searchInput) {
-      searchInput.focus();
-    }
+    navigate('/search');
   };
 
   return (
@@ -32,26 +30,6 @@ export const Home: React.FC = () => {
               Start Searching <FaSearch className="text-sm" />
             </button>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left pt-4">
-          
-          <div className="bg-github-surface border border-github-border p-5 rounded-xl space-y-2">
-            <FaLaptopCode className="text-github-accent text-xl" />
-            <h3 className="font-bold text-github-text text-sm">Search for any developer</h3>
-            <p className="text-github-muted text-xs leading-relaxed">
-              Check out their whole profile on GitHub.
-            </p>
-          </div>
-
-          <div className="bg-github-surface border border-github-border p-5 rounded-xl space-y-2">
-            <FaCode className="text-github-accent text-xl" />
-            <h3 className="font-bold text-github-text text-sm">Search Repositories</h3>
-            <p className="text-github-muted text-xs leading-relaxed">
-              Filter repositories by programming languages, star counts, forks, and sorting order.
-            </p>
-          </div>
-
         </div>
 
       </div>
