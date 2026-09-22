@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center justify-center">
-        <nav className="hidden md:flex items-center">
+        <nav className=" md:flex items-center">
           <Link
             to="/"
             className={`relative py-1 px-2 text-sm font-medium transition-colors cursor-default flex items-center gap-1.5 ${
