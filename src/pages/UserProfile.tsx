@@ -6,7 +6,7 @@ import { UserCard } from '../components/UserCard';
 
 export const UserProfile: React.FC = () => {
   const { username } = useParams<{ username: string }>();
-  const { user, loading: userLoading, error: userError } = useGitHubUser();
+  const { user, loading: userLoading, error: userError, rateLimit } = useGitHubUser();
   const { repo: repos, loading: reposLoading, error: reposError } = useGitHubRepos();
 
   if (userLoading) {
@@ -35,7 +35,7 @@ export const UserProfile: React.FC = () => {
 
       <div className="space-y-4 pt-4 border-t border-github-border">
         <h2 className="text-xl font-black text-github-text">Repositories</h2>
-        <RepoList repos={repos} loading={reposLoading} error={reposError} username={username || ''} />
+        <RepoList repos={repos} loading={reposLoading} error={reposError} username={username || ''} rateLimit={rateLimit} />
       </div>
 
     </div>

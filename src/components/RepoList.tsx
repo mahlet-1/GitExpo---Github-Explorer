@@ -1,17 +1,18 @@
 import React, { useState, useMemo } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaClock } from 'react-icons/fa';
 import { RepoCard } from './RepoCard';
 import { LanguageFilter } from './LanguageFilter';
-import type { GitHubRepo } from '../types/github';
+import type { GitHubRepo, RateLimit } from '../types/github';
 
 interface RepoListProps {
   repos: GitHubRepo[];
   username: string;
   loading?: boolean;   
   error?: string | null
+  rateLimit?: RateLimit | null;
 }
 
-export const RepoList: React.FC<RepoListProps> = ({ repos, username }) => {
+export const RepoList: React.FC<RepoListProps> = ({ repos, username, rateLimit }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'updated' | 'stars' | 'forks' | 'name'>('updated');
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -59,6 +60,13 @@ export const RepoList: React.FC<RepoListProps> = ({ repos, username }) => {
         </div>
         
         <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+        {rateLimit && (
+            <div className="flex items-center gap-2 px-3 py-2.5 bg-github-bg border-2 border-github-border rounded-xl text-xs font-bold text-github-muted shadow-inner">
+              <FaClock className="text-github-accent" />
+              <span className='font-semibold text-white'> {rateLimit.remaining} / {rateLimit.limit} limit left
+              </span>
+            </div>
+          )}
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as 'updated' | 'stars' | 'forks' | 'name')}
