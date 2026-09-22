@@ -1,75 +1,94 @@
-# React + TypeScript + Vite
+# GitExpo- GitHub Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application built by react and typescript that lets users seamlessly search GitHub profiles, see their repositories, filter by programming languages, sort by name, date updated, stars and forks, and rate limits that are fetched from Github API that counts in real-time.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Key Features
 
-## React Compiler
+- **Profile Search:** Search any valid GitHub username to view  their profile with detailed data like followers and repositories count.
+- **Repository Search:** 
+  - Search by repository name and description.
+  - Dynamic language filtering generated automatically from fetched repositories.
+  - Multi-criteria sorting with name, stars, forks and recently updated repositories
+- **API Rate Limit Tracker:** Live indicator in the repository list tracking REST API requests to prevent unexpected 403 unexpected limits.
+- **Error States:** State for handling non-existent users, empty repository states, and network failures with navigation back to search.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework:** React (Vite)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Routing:** React Router DOM
+- **Icons:** React Icons (`react-icons`)
+- **API:** GitHub REST API
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+Github-Explorer/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Footer.tsx
+│   │   ├── LanguageFilter.tsx
+│   │   ├── NavBar.tsx
+│   │   ├── RepoCard.tsx
+│   │   ├── RepoList.tsx
+│   │   ├── SearchBar.tsx
+│   │   ├── SearchHistory.tsx
+│   │   ├── SortSelect.tsx
+│   │   └── UserCard.tsx
+│   ├── hooks/
+│   │   ├── useGitHubRepos.ts
+│   │   ├── useGitHubUser.ts
+│   │   └── useSearchHistory.ts
+│   ├── pages/
+│   │   ├── Home.tsx
+│   │   ├── NotFound.tsx
+│   │   ├── RepoDetail.tsx
+│   │   ├── SearchPage.tsx
+│   │   └── UserProfile.tsx
+│   ├── types/
+│   │   └── github.ts
+│   ├── App.css
+│   └── App.tsx
+├── node_modules/
+├── .env
+├── .gitignore
+├── tailwind.config.js
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+Make sure you have **Node.js** and **npm** installed on your computer.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Setup Steps
 
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/mahlet-1/GitExpo---Github-Explorer
+   cd Github-Explorer
+   ```
+
+2. **Install project dependencies:**
+   ```bash
+   npm install
+   ```
+
+
+3. **Boot up the local development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build the app for final production deployment:**
+   ```bash
+   npm run build
+   ```
