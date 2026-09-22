@@ -14,8 +14,7 @@ export default {
           accent: "#30b830",      
           accentHover: "#13561f",
           text: "#c9d1d9",       
-          muted: "#8b949e",       
-          link: "#58a6ff",        
+          muted: "#8b949e",             
         },
       },
       fontFamily: {
