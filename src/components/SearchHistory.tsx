@@ -27,8 +27,8 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
       </div>
 
       <ul className="max-h-60 overflow-y-auto divide-y divide-github-border/50">
-        {history.map((username, index) => (
-          <li key={`${username}-${index}`}>
+        {history.map((username) => (
+          <li key={`${username}`}>
             <button
               type="button"
               onMouseDown={(e) => {

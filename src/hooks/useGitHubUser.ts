@@ -9,10 +9,12 @@ export function useGitHubUser() {
   const [error, setError] = useState<string | null>(null);
   const [rateLimit, setRateLimit] = useState<RateLimit | null>(null);
 
-  const fetchUser = async (username: string) => {
-    if (!username.trim()) return;
-    setLoading(true);
-    setError(null);
+  useEffect(() => {
+    if (!username || !username.trim()) return;
+
+    const fetchUser = async () => {
+      setLoading(true);
+      setError(null);
 
     try {
       const response = await fetch(`https://api.github.com/users/${username}`);
@@ -42,12 +44,9 @@ export function useGitHubUser() {
       setLoading(false);
     }
   };
+  
+  fetchUser();
+    }, [username]);
 
-  useEffect(() => {
-    if (username) {
-      fetchUser(username);
-    }
-  }, [username]);
-
-  return { user, loading, error, rateLimit, fetchUser };
+  return { user, loading, error, rateLimit };
 };

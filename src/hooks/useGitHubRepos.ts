@@ -8,9 +8,9 @@ export function useGitHubRepos() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null >(null);
 
-  const fetchRepo = async (username: string) => {
-    if (!username.trim()) return;
-
+  useEffect(() => {
+    if (!username || !username.trim()) return;
+    const fetchRepo = async () => {
     setLoading(true);
     setError(null);
 
@@ -37,11 +37,8 @@ export function useGitHubRepos() {
     }
   };
 
-  useEffect(() => {
-    if (username) {
-      fetchRepo(username);
-    }
-  }, [username]);
+      fetchRepo();
+    }, [username]);
 
-  return { repo, loading, error, fetchRepo };
+  return { repo, loading, error};
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -9,8 +9,9 @@ import { RepoDetail } from './pages/RepoDetail';
 import { NotFound } from './pages/NotFound';
 
 
-const AppShell: React.FC = () => {
+const App: React.FC = () => {
   return (
+    <BrowserRouter>
     <div className="min-h-screen bg-github-bg text-github-text flex flex-col font-sans select-none">
       <Navbar />
       <main className="flex-grow">
@@ -24,15 +25,9 @@ const AppShell: React.FC = () => {
       </main>
       <Footer />
     </div>
+    </BrowserRouter>
   );
 };
 
-export const App: React.FC = () => {
-  return (
-    <Router>
-      <AppShell/>
-    </Router>
-  );
-};
 
 export default App;

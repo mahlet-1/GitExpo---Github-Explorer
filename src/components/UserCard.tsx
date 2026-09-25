@@ -1,5 +1,5 @@
 import type { GitHubUser } from '../types/github';
-import { FaMapMarkerAlt, FaLink, FaBuilding, FaUsers, FaCodeBranch, FaCalendarAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaBuilding, FaUsers, FaCodeBranch, FaCalendarAlt } from 'react-icons/fa';
 
 export function UserCard({ user }: { user: GitHubUser }) {
   return (
@@ -15,7 +15,6 @@ export function UserCard({ user }: { user: GitHubUser }) {
           <h1 className="text-2xl sm:text-3xl font-black text-github-text">
             {user.name || user.login}
           </h1>
-          <p className="text-github-accent font-bold text-sm">@{user.login}</p>
         </div>
 
         {user.bio && (
@@ -37,17 +36,6 @@ export function UserCard({ user }: { user: GitHubUser }) {
               <span>{user.location}</span>
             </div>
           )}
-          {user.blog && (
-            <a
-              href={user.blog.startsWith('http') ? user.blog : `https://${user.blog}`}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 hover:text-github-accent transition-colors"
-            >
-              <FaLink className="text-github-accent" />
-              <span>Website</span>
-            </a>
-          )}
           {user.created_at && (
             <div className="flex items-center gap-1.5">
               <FaCalendarAlt className="text-github-accent" />
@@ -67,7 +55,7 @@ export function UserCard({ user }: { user: GitHubUser }) {
           </div>
           {user.following !== undefined && (
             <div className="flex items-center gap-2 text-xs font-extrabold text-github-text">
-              <span className="text-github-accent text-sm font-bold">@</span>
+                <FaUsers className="text-github-accent text-sm" />
               <span>{user.following} <span className="text-github-muted font-medium">Following</span></span>
             </div>
           )}
